@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@500&family=Russo+One&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="number_container">
+    <h2 class="number">Задача №2.55</h2>
+</div>
+<div class="container">
+   <div class="main">
+    <div class="inputs">
+    <p id="err" style="display: none; color: crimson;">Недопустимые значения</p>
+    <h1>Дано</h2>
+    <p>a = <input type="number" id="input_a" value="4"> м</p>
+    <p>b = <input type="number" id="input_b" value="6"> м</p>
+    <p>c = <input type="number" id="input_c" value="17"> м</p>
+    <p>вес башни <input type="number" id="input_weight" value="80"> кН </p>
+    <p>q = <input type="number" id="input_q" value="1.25"> кПа/м2 </p>
+    <h1>Найти</h2>
+    <p>Расстояние между опорами AB</p>
+</div>
+</div>
+    <div class="result">
+        <h2>Ответ l ><span id="result"></span> м</h2>
+    </div>
+</div>
+<script>
+function calculateDistance() {
+    var a = parseFloat(document.getElementById('input_a').value);
+    var b = parseFloat(document.getElementById('input_b').value);
+    var c = parseFloat(document.getElementById('input_c').value);
+    var weight = parseFloat(document.getElementById('input_weight').value);
+    var q = parseFloat(document.getElementById('input_q').value);
+    if (a < 0 || b < 0 || c < 0 || weight < 0 || q < 0) {
+        document.getElementById('err').style.display = 'block';
+        return;
+    }
+    else{
+        document.getElementById('err').style.display = 'none';
+    }
+
+    var Fy = weight/2
+    var l = (q * a * b) / Fy * (c + b / 2);
+    
+    document.getElementById('result').textContent = l.toFixed(2);
+}
+
+calculateDistance();
+
+
+document.querySelectorAll('input[type="number"]').forEach((input) => {
+    console.log(input.value)
+    input.addEventListener('input', calculateDistance);
+});
+</script>
+
+</body>
+</html>
+
+
+<style>
+
+    
+body{
+    margin: 100px 200px;
+    background: #212929;
+    color: #ccc;
+    font-family: "Russo One", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    letter-spacing: 1px;
+}
+@media screen and (max-width: 768px) {
+    body {
+        margin: 0;
+        width: max-content;
+        scale: 50%;
+    }
+}
+.container {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+.main{
+    border: 3px solid;
+    border-radius: 10%;
+    border-color: #71c392;
+    width: max-content;
+}
+.inputs{
+    padding: 20px;
+}
+h1{
+    color: white;
+}
+.russo-one-regular {
+  font-family: "Russo One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+</style>
